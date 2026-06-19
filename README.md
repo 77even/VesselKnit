@@ -1,8 +1,6 @@
 <div align="center">
 
-# VesselKnit
-
-**Voxelize vessel STL meshes into NIfTI masks — without breakage.**
+<img src="https://raw.githubusercontent.com/77even/VesselKnit/main/assets/logo.png" alt="VesselKnit" width="460">
 
 [![PyPI](https://img.shields.io/pypi/v/vesselknit?cacheSeconds=600)](https://pypi.org/project/vesselknit/)
 [![Python](https://img.shields.io/pypi/pyversions/vesselknit?cacheSeconds=600)](https://pypi.org/project/vesselknit/)
