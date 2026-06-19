@@ -1,0 +1,52 @@
+name: Publish to PyPI
+
+# Build sdist + wheel and publish to PyPI when a version tag (vX.Y.Z) is pushed.
+# Uses PyPI Trusted Publishing (OIDC) -- no token needed once the publisher is
+# configured on PyPI. Falls back to a PYPI_API_TOKEN secret if you prefer (see
+# the commented `password` line).
+#
+# NOTE: only the tag push triggers a publish. Creating a GitHub Release does NOT
+# re-trigger it, so making a Release for an already-published tag won't attempt a
+# duplicate upload (which PyPI rejects).
+
+on:
+  push:
+    tags: ["v*"]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Build sdist and wheel
+        run: |
+          python -m pip install --upgrade pip build
+          python -m build
+      - name: Check artifacts
+        run: |
+          python -m pip install twine
+          twine check dist/*
+      - uses: actions/upload-artifact@v4
+        with:
+          name: dist
+          path: dist/
+
+  publish:
+    needs: build
+    runs-on: ubuntu-latest
+    environment: pypi
+    permissions:
+      id-token: write   # for PyPI Trusted Publishing (OIDC)
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: dist
+          path: dist/
+      - name: Publish to PyPI
+        uses: pypa/gh-action-pypi-publish@release/v1
+        # with:
+        #   password: ${{ secrets.PYPI_API_TOKEN }}   # uncomment to use a token instead of OIDC

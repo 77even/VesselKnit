@@ -1,0 +1,60 @@
+[build-system]
+requires = ["setuptools>=64", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "vesselknit"
+dynamic = ["version"]
+description = "Voxelize vessel STL meshes into NIfTI masks without breakage -- connectivity-preserving, calibre-faithful."
+readme = "README.md"
+requires-python = ">=3.9"
+license = "Apache-2.0"
+authors = [{ name = "Justin" }]
+keywords = [
+    "stl", "nifti", "voxelization", "vessel", "medical-imaging", "vtk",
+    "segmentation", "connectivity", "mesh", "surface",
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Science/Research",
+    "Intended Audience :: Healthcare Industry",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Scientific/Engineering :: Medical Science Apps.",
+    "Topic :: Scientific/Engineering :: Visualization",
+]
+dependencies = [
+    "numpy>=1.21",
+    "SimpleITK>=2.1",
+    "vtk>=9.0",
+    "scipy>=1.7",
+]
+
+[project.optional-dependencies]
+dicom = ["pydicom>=2.3"]
+nibabel = ["nibabel>=4.0"]
+progress = ["tqdm>=4.60"]
+all = ["pydicom>=2.3", "nibabel>=4.0", "tqdm>=4.60"]
+dev = ["pytest>=7.0", "pydicom>=2.3", "nibabel>=4.0", "tqdm>=4.60", "build", "twine"]
+
+[project.urls]
+Homepage = "https://github.com/77even/VesselKnit"
+Repository = "https://github.com/77even/VesselKnit"
+Issues = "https://github.com/77even/VesselKnit/issues"
+
+[project.scripts]
+vesselknit = "vesselknit.cli:main"
+
+[tool.setuptools]
+packages = ["vesselknit"]
+
+[tool.setuptools.dynamic]
+version = { attr = "vesselknit._version.__version__" }
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
