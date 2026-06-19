@@ -4,8 +4,8 @@
 
 **Voxelize vessel STL meshes into NIfTI masks — without breakage.**
 
-[![PyPI](https://img.shields.io/pypi/v/vesselknit.svg?cacheSeconds=300)](https://pypi.org/project/vesselknit/)
-[![Python](https://img.shields.io/pypi/pyversions/vesselknit.svg?cacheSeconds=300)](https://pypi.org/project/vesselknit/)
+[![PyPI](https://img.shields.io/pypi/v/vesselknit?cacheSeconds=600)](https://pypi.org/project/vesselknit/)
+[![Python](https://img.shields.io/pypi/pyversions/vesselknit?cacheSeconds=600)](https://pypi.org/project/vesselknit/)
 [![License: Apache 2.0](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](LICENSE)
 
 </div>
